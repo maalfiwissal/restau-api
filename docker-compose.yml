@@ -1,0 +1,32 @@
+version: '3'
+services:
+  myapp:
+    image: openjdk:17-jdk-slim
+    ports:
+      - 8083:8083
+    volumes:
+      - ./target/restau2-0.0.1-SNAPSHOT.jar:/app.jar
+    environment:
+      - spring.datasource.url=jdbc:mysql://db:3306/restau?serverTimezone=UTC
+      - spring.datasource.username=root
+      - spring.datasource.password=root
+      - server.port=8083
+      - spring.jpa.show-sql=true
+      - spring.jpa.properties.hibernate.format_sql=true
+      - spring.jpa.hibernate.ddl-auto=update
+    depends_on:
+      - db
+    command: ["java", "-jar", "app.jar"]
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=restau
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

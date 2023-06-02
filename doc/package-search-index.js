@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.restau"},{"l":"com.example.restau.controller"},{"l":"com.example.restau.entities"},{"l":"com.example.restau.repository"}];updateSearchResults();
